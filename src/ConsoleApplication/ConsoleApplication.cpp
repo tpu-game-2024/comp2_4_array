@@ -35,4 +35,6 @@ int main()
 	printf("\n");
 
 	release(&ar);
+
+	return 0;
 }
