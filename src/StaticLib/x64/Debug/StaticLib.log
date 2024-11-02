@@ -1,0 +1,3 @@
+﻿  StaticLib.c
+C:\Users\AHaruto\Downloads\comp2_4_array-main\comp2_4_array-main\src\StaticLib\StaticLib.c(47,12): warning C4047: '=': 間接参照のレベルが 'int' と 'int *' で異なっています。
+  StaticLib.vcxproj -> C:\Users\AHaruto\Downloads\comp2_4_array-main\comp2_4_array-main\src\x64\Debug\StaticLib.lib
