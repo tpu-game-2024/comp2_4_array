@@ -44,7 +44,7 @@ void resize(my_array* ar, int n)
 	if (alter == NULL) return;
 	for (int i = 0; i < c; i++)
 	{
-		alter[i] = ar->addr;
+		alter[i] = ar->addr[i];
 	}
 
 	free(ar->addr);
