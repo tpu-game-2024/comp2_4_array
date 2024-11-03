@@ -37,20 +37,17 @@ void resize(my_array* ar, int n)
 	int* newArray = NULL;
 	newArray = (int*)malloc(sizeof(int) * n);
 
-	if (n == NULL) n = 0;
-	
-	for (int i = 0; i < n; i++)
-	{
-		if (newArray != NULL) {
-			newArray[i] = ar->addr[i];
-		}
-		
-	}
-	
+	if (newArray == NULL) return;
 
-	//newArray = ar;
+	for (int i = 0; i < ar->num && i < n; i++)
+	{
+		newArray[i] = ar->addr[i];
+	}
+
+	free(ar->addr);
 	ar->num = n;
 	ar->addr = newArray;
+	
 	// ToDo:配列の要素数を変更しよう！(reallocは禁止)
 }
 
