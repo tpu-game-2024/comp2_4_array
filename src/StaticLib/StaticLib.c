@@ -29,20 +29,25 @@ void release(my_array* ar)
 {
 	free(ar->addr);
 	ar->addr = NULL;// 多重解放の防止
+	ar->num = 0;
 }
 
 // my_array の要素数を変更する(以前の値は要素が同じ範囲で残す)
 void resize(my_array* ar, int n)
 {
-	if (ar == NULL)return;
-
+	if (ar == NULL || n <= 0) return;
 	int* a = (int*)malloc(sizeof(int) * n);
-	if (a == NULL)return;
+	if (a == NULL) return;
 
 	if (ar->addr != NULL) {
-		memcpy_s(a, sizeof(int) * n,
-			ar->addr, sizeof(int) * min(n, ar->num));
+		size_t copy_size = sizeof(int) * (n < ar->num ? n : ar->num);
+		memcpy_s(a, sizeof(int) * n, ar->addr, copy_size);
+
+		
+		free(ar->addr);
 	}
+
+	
 	ar->addr = a;
 	ar->num = n;
 
@@ -72,7 +77,6 @@ int get(const my_array* ar, int index)
 // my_array の要素数を取得する
 int size(const my_array* ar)
 {
-	if (ar == NULL || ar->addr == NULL)return 0;
-	// ToDo: 配列の要素数を返そう
+	if (ar == NULL) return 0;
 	return ar->num;
 }
