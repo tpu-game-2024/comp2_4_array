@@ -35,6 +35,7 @@ void release(my_array* ar)
 void resize(my_array* ar, int n)
 {
 	// ToDo:配列の要素数を変更しよう！(reallocは禁止)
+
 	if (ar == NULL) return;// NULLチェック
 
 	int* extra_array;
@@ -43,24 +44,22 @@ void resize(my_array* ar, int n)
 
 	if (extra_array == NULL) return;
 
-	for (int i = 0; i < ar->num; i++) {
+	int copy_quantity;
+
+	if (n < ar->num) {
+		copy_quantity = n;
+	}
+	else copy_quantity = ar->num;
+
+	for (int i = 0; i < copy_quantity; ++i) {
 		extra_array[i] = ar->addr[i];
 	}
 
+	free(ar->addr);
+
+	ar->addr = extra_array;
 	ar->num = n;
-	ar->addr = (int*)malloc(sizeof(int) * n);
 
-
-	if (ar->addr == NULL || extra_array == NULL) return;// NULLチェック
-
-	for (int i = 0; i < n; i++) {
-		ar->addr[i] = extra_array[i];
-	}
-
-	free(extra_array);
-
-	// 確保できなかったら要素数は0とする
-	if (ar->addr == NULL) ar->num = 0;
 }
 
 // my_array のindex番目の要素にvalを設定する
