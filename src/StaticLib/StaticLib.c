@@ -59,7 +59,7 @@ bool set(my_array* ar, int index, int val)
 
 	if (ar == NULL || ar->addr == NULL) return false;
 
-	if (ar->num > index>= 0)
+	if (ar->num > index && index >= 0)
 	{
 		//ar->addrのindex番目にvalを代入する。
 		ar->addr[index] = val;
@@ -77,7 +77,7 @@ int get(const my_array* ar, int index)
 	
 	if (ar == NULL || ar->addr == NULL) return 0;
 
-	if (ar->num > index >= 0)
+	if (ar->num > index && index >= 0)
 	{
 		return ar->addr[index];
 	}
