@@ -57,13 +57,16 @@ bool set(my_array* ar, int index, int val)
 
 	// ToDo:配列の要素を変更しよう！
 
-	if (ar == NULL || ar->addr == NULL
-		|| ar->num <= index || index < 0) return false;
+	if (ar == NULL || ar->addr == NULL) return false;
 
+	if (ar->num > index>= 0)
+	{
 		//ar->addrのindex番目にvalを代入する。
 		ar->addr[index] = val;
 		return true;
-
+	}
+	
+	return false;
 }
 
 // my_array のindex番目の要素を取得する
@@ -72,10 +75,16 @@ int get(const my_array* ar, int index)
 {
 	// ToDo:要素を所得して、indexがおかしかったら0を返そう
 	
-	if (ar == NULL || ar->addr == NULL
-		|| ar->num <= index || index < 0) return 0;
+	if (ar == NULL || ar->addr == NULL) return 0;
 
+	if (ar->num > index >= 0)
+	{
 		return ar->addr[index];
+	}
+
+	//indexが確保されていない場所を指していたら0を返す。
+
+	return 0;
 }
 
 // my_array の要素数を取得する
